@@ -15,7 +15,9 @@ void main(array<String^>^ args) {
 	TaiKhoan^ taikhoan = myFrm.taikhoan;
 
 	if (taikhoan != nullptr) {
-		BankManagement::MyForm dashboard(taikhoan);
+		myFrm.Close();
+		MessageBox::Show("Successful " + taikhoan->ten, "Login.cpp", MessageBoxButtons::OK);
+		BankManagement::Dashboard dashboard(taikhoan);
 		Application::Run(% dashboard);
 	}
 	else {

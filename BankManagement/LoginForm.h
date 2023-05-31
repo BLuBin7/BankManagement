@@ -309,19 +309,21 @@ namespace BankManagement {
 					taikhoan->sodu = reader->GetDouble(2);
 					taikhoan->_password = reader->GetString(3);
 
-					MessageBox::Show("User Exists");
-
 					this->Close();
+					sqlcon.Close();
 				}
 				else
 				{
 					MessageBox::Show("User Does Not Exists");
+					sqlcon.Close();
 				}
 			}
 			catch(Exception^ e){
 				MessageBox::Show("Error: " + e->Message, "Exception", MessageBoxButtons::OK);
 				//MessageBox::Show("fail");
 			}
+
+			
 			
 			//if (userBox->Text == "admin")
 			//{

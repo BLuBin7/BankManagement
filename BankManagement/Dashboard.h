@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "TKtietkiem.h"
+#include "TaiKhoan.h"
 
 
 namespace BankManagement {
@@ -39,6 +40,16 @@ namespace BankManagement {
 			
 		}
 
+		Dashboard(TaiKhoan^ taikhoan)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+			idlabel->Text = "Id = " + taikhoan->id;
+			tenlabel->Text = "Ten = " + taikhoan->ten;
+		}
+
 		 //gui tiet kiem
 
 		/*Dashboard(int amount)
@@ -74,8 +85,10 @@ namespace BankManagement {
 	private: System::Windows::Forms::Button^ searchButton;
 
 	private: System::Windows::Forms::TextBox^ soduBox;
-	private: System::Windows::Forms::TextBox^ iduserBox;
-	private: System::Windows::Forms::TextBox^ accountnameBox;
+	private: System::Windows::Forms::Label^ idlabel;
+	private: System::Windows::Forms::Label^ tenlabel;
+
+
 
 
 	private:
@@ -101,8 +114,8 @@ namespace BankManagement {
 			this->soduBox = (gcnew System::Windows::Forms::TextBox());
 			this->nameUserBox = (gcnew System::Windows::Forms::TextBox());
 			this->searchButton = (gcnew System::Windows::Forms::Button());
-			this->iduserBox = (gcnew System::Windows::Forms::TextBox());
-			this->accountnameBox = (gcnew System::Windows::Forms::TextBox());
+			this->idlabel = (gcnew System::Windows::Forms::Label());
+			this->tenlabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// thanhtoanButton
@@ -216,33 +229,35 @@ namespace BankManagement {
 			this->searchButton->UseVisualStyleBackColor = true;
 			this->searchButton->Click += gcnew System::EventHandler(this, &Dashboard::searchButton_Click);
 			// 
-			// iduserBox
+			// idlabel
 			// 
-			this->iduserBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->idlabel->AutoSize = true;
+			this->idlabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->iduserBox->Location = System::Drawing::Point(47, 68);
-			this->iduserBox->Name = L"iduserBox";
-			this->iduserBox->Size = System::Drawing::Size(100, 45);
-			this->iduserBox->TabIndex = 12;
-			this->iduserBox->TextChanged += gcnew System::EventHandler(this, &Dashboard::iduserBox_TextChanged);
+			this->idlabel->Location = System::Drawing::Point(38, 58);
+			this->idlabel->Name = L"idlabel";
+			this->idlabel->Size = System::Drawing::Size(93, 39);
+			this->idlabel->TabIndex = 14;
+			this->idlabel->Text = L"STK:";
 			// 
-			// accountnameBox
+			// tenlabel
 			// 
-			this->accountnameBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tenlabel->AutoSize = true;
+			this->tenlabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accountnameBox->Location = System::Drawing::Point(47, 152);
-			this->accountnameBox->Name = L"accountnameBox";
-			this->accountnameBox->Size = System::Drawing::Size(100, 45);
-			this->accountnameBox->TabIndex = 13;
-			this->accountnameBox->TextChanged += gcnew System::EventHandler(this, &Dashboard::accountnameBox_TextChanged);
+			this->tenlabel->Location = System::Drawing::Point(38, 136);
+			this->tenlabel->Name = L"tenlabel";
+			this->tenlabel->Size = System::Drawing::Size(76, 39);
+			this->tenlabel->TabIndex = 15;
+			this->tenlabel->Text = L"Ten";
 			// 
 			// Dashboard
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1182, 768);
-			this->Controls->Add(this->accountnameBox);
-			this->Controls->Add(this->iduserBox);
+			this->Controls->Add(this->tenlabel);
+			this->Controls->Add(this->idlabel);
 			this->Controls->Add(this->searchButton);
 			this->Controls->Add(this->nameUserBox);
 			this->Controls->Add(this->soduBox);
@@ -346,7 +361,7 @@ namespace BankManagement {
 					connection->Open();
 
 					 //Assuming you have an 'accounts' table with columns 'id', 'ten', and 'sodu'
-					String^ updateQuery = "UPDATE TaiKhoan SET sodu = sodu - " + btienmuonchuyen + " WHERE id = '" + iduserBox->Text + "';";
+					String^ updateQuery = "UPDATE TaiKhoan SET sodu = sodu - " + btienmuonchuyen + " WHERE id = '" + idlabel->Text + "';";
 					SqlCommand^ command = gcnew SqlCommand(updateQuery, connection);
 					command->ExecuteNonQuery();
 
@@ -439,70 +454,10 @@ private: System::Void searchButton_Click(System::Object^ sender, System::EventAr
 
 }
 
-	public: System::Void SetAccountDetails(String^ accountName){
-		try
-		{
-			accountName = "admin";
-			SqlConnection^ connection = gcnew SqlConnection(connectionString);
-			connection->Open();
 
-			 //Assuming 'TaiKhoan' table has columns 'id', 'ten', and 'sodu'
-			String^ selectQuery = "SELECT id, ten, sodu FROM TaiKhoan WHERE ten = '" + accountName + "';";
-			SqlCommand^ command = gcnew SqlCommand(selectQuery, connection);
-			SqlDataReader^ reader = command->ExecuteReader();
-
-			 //Check if there is a matching record
-			if (reader->Read())
-			{
-				 //Retrieve the values
-				String^ id = reader->GetString(reader->GetOrdinal("id"));
-				String^ ten = reader->GetString(reader->GetOrdinal("ten"));
-				String^ sodu = reader->GetDecimal(reader->GetOrdinal("sodu")).ToString();
-
-				 //Set the values in the text boxes
-				iduserBox->Text = id;
-				accountnameBox->Text = ten;
-				soduBox->Text = sodu;
-			}
-
-			 //Close the reader and disconnect
-			reader->Close();
-			connection->Close();
-		}
-		catch (Exception^ ex)
-		{
-			MessageBox::Show("Failed to retrieve account details from the database", "Error", MessageBoxButtons::OK);
-		}
-	}
-	
-	
-
-	
-private: System::Void iduserBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	String^ accountName = iduserBox->Text;
-
-	 //Connect to the database and retrieve the id for the given account name
-	SqlConnection^ connection = gcnew SqlConnection(connectionString);
-	connection->Open();
-
-
-	String^ selectQuery = "SELECT id FROM TaiKhoan WHERE ten = @admin;";
-	SqlCommand^ command = gcnew SqlCommand(selectQuery, connection);
-	command->Parameters->AddWithValue("@admin", accountName);
-
-	SqlDataReader^ reader = command->ExecuteReader();
-
-	if (reader->Read()) {
-		String^ id = reader->GetString(0);
-		iduserBox->Text = id;
-	}
-
-	reader->Close();
-	connection->Close();
-}
 
 private: System::Void soduBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	String^ accountId = iduserBox->Text;
+	String^ accountId = idlabel->Text;
 
 	 //Connect to the database and retrieve the balance for the given account ID
 	SqlConnection^ connection = gcnew SqlConnection(connectionString);
@@ -524,7 +479,7 @@ private: System::Void soduBox_TextChanged(System::Object^ sender, System::EventA
 }
 
 private: System::Void accountnameBox_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-	String^ accountId = iduserBox->Text;
+	String^ accountId = idlabel->Text;
 
 	 //Connect to the database and retrieve the account name for the given account ID
 	SqlConnection^ connection = gcnew SqlConnection(connectionString);
@@ -538,7 +493,7 @@ private: System::Void accountnameBox_TextChanged(System::Object^ sender, System:
 
 	if (reader->Read()) {
 		String^ accountName = reader->GetString(0);
-		accountnameBox->Text = accountName;
+		tenlabel->Text = accountName;
 	}
 
 	reader->Close();
