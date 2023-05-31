@@ -1,8 +1,7 @@
 #pragma once
 #include "Dashboard.h"
-//#include "Register.h"
-//#include "MyForm.h"
-
+#include "MyForm.h"
+#include "TaiKhoan.h"
 
 namespace BankManagement {
 		using namespace System;
@@ -12,7 +11,6 @@ namespace BankManagement {
 		using namespace System::Data;
 		using namespace System::Drawing;
 		using namespace System::Data::SqlClient;
-
 		/// <summary>
 		/// Summary for LoginForm
 		/// </summary>
@@ -29,8 +27,6 @@ namespace BankManagement {
 				//TODO: Add the constructor code here
 				//
 			}
-
-
 
 		protected:
 			/// <summary>
@@ -90,10 +86,9 @@ namespace BankManagement {
 				// pictureBox1
 				// 
 				this->pictureBox1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-				this->pictureBox1->Location = System::Drawing::Point(200, 52);
-				this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
+				this->pictureBox1->Location = System::Drawing::Point(150, 42);
 				this->pictureBox1->Name = L"pictureBox1";
-				this->pictureBox1->Size = System::Drawing::Size(195, 164);
+				this->pictureBox1->Size = System::Drawing::Size(146, 133);
 				this->pictureBox1->TabIndex = 0;
 				this->pictureBox1->TabStop = false;
 				this->pictureBox1->Click += gcnew System::EventHandler(this, &LoginForm::otherClick);
@@ -106,10 +101,9 @@ namespace BankManagement {
 				this->userBox->Font = (gcnew System::Drawing::Font(L"Calibri", 24.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 				this->userBox->ForeColor = System::Drawing::Color::White;
-				this->userBox->Location = System::Drawing::Point(189, 251);
-				this->userBox->Margin = System::Windows::Forms::Padding(4);
+				this->userBox->Location = System::Drawing::Point(142, 204);
 				this->userBox->Name = L"userBox";
-				this->userBox->Size = System::Drawing::Size(305, 51);
+				this->userBox->Size = System::Drawing::Size(229, 41);
 				this->userBox->TabIndex = 1;
 				this->userBox->Text = L"username";
 				this->userBox->Click += gcnew System::EventHandler(this, &LoginForm::userBox_Click);
@@ -122,10 +116,9 @@ namespace BankManagement {
 				this->passBox->Font = (gcnew System::Drawing::Font(L"Calibri", 24.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
 				this->passBox->ForeColor = System::Drawing::Color::White;
-				this->passBox->Location = System::Drawing::Point(189, 348);
-				this->passBox->Margin = System::Windows::Forms::Padding(4);
+				this->passBox->Location = System::Drawing::Point(142, 283);
 				this->passBox->Name = L"passBox";
-				this->passBox->Size = System::Drawing::Size(305, 51);
+				this->passBox->Size = System::Drawing::Size(229, 41);
 				this->passBox->TabIndex = 1;
 				this->passBox->Text = L"password";
 				this->passBox->UseSystemPasswordChar = true;
@@ -134,30 +127,27 @@ namespace BankManagement {
 				// panel1
 				// 
 				this->panel1->BackColor = System::Drawing::Color::White;
-				this->panel1->Location = System::Drawing::Point(175, 305);
-				this->panel1->Margin = System::Windows::Forms::Padding(4);
+				this->panel1->Location = System::Drawing::Point(131, 248);
 				this->panel1->Name = L"panel1";
-				this->panel1->Size = System::Drawing::Size(320, 4);
+				this->panel1->Size = System::Drawing::Size(240, 3);
 				this->panel1->TabIndex = 2;
 				this->panel1->Click += gcnew System::EventHandler(this, &LoginForm::otherClick);
 				// 
 				// panel2
 				// 
 				this->panel2->BackColor = System::Drawing::Color::White;
-				this->panel2->Location = System::Drawing::Point(175, 402);
-				this->panel2->Margin = System::Windows::Forms::Padding(4);
+				this->panel2->Location = System::Drawing::Point(131, 327);
 				this->panel2->Name = L"panel2";
-				this->panel2->Size = System::Drawing::Size(320, 4);
+				this->panel2->Size = System::Drawing::Size(240, 3);
 				this->panel2->TabIndex = 2;
 				this->panel2->Click += gcnew System::EventHandler(this, &LoginForm::otherClick);
 				// 
 				// pictureBox2
 				// 
 				this->pictureBox2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-				this->pictureBox2->Location = System::Drawing::Point(93, 241);
-				this->pictureBox2->Margin = System::Windows::Forms::Padding(4);
+				this->pictureBox2->Location = System::Drawing::Point(70, 196);
 				this->pictureBox2->Name = L"pictureBox2";
-				this->pictureBox2->Size = System::Drawing::Size(73, 68);
+				this->pictureBox2->Size = System::Drawing::Size(55, 55);
 				this->pictureBox2->TabIndex = 3;
 				this->pictureBox2->TabStop = false;
 				this->pictureBox2->Click += gcnew System::EventHandler(this, &LoginForm::otherClick);
@@ -165,10 +155,9 @@ namespace BankManagement {
 				// pictureBox3
 				// 
 				this->pictureBox3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-				this->pictureBox3->Location = System::Drawing::Point(93, 338);
-				this->pictureBox3->Margin = System::Windows::Forms::Padding(4);
+				this->pictureBox3->Location = System::Drawing::Point(70, 275);
 				this->pictureBox3->Name = L"pictureBox3";
-				this->pictureBox3->Size = System::Drawing::Size(73, 68);
+				this->pictureBox3->Size = System::Drawing::Size(55, 55);
 				this->pictureBox3->TabIndex = 3;
 				this->pictureBox3->TabStop = false;
 				this->pictureBox3->Click += gcnew System::EventHandler(this, &LoginForm::otherClick);
@@ -183,10 +172,9 @@ namespace BankManagement {
 				this->loginButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 				this->loginButton->Font = (gcnew System::Drawing::Font(L"Calibri", 24.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 					static_cast<System::Byte>(0)));
-				this->loginButton->Location = System::Drawing::Point(101, 447);
-				this->loginButton->Margin = System::Windows::Forms::Padding(4);
+				this->loginButton->Location = System::Drawing::Point(76, 363);
 				this->loginButton->Name = L"loginButton";
-				this->loginButton->Size = System::Drawing::Size(393, 60);
+				this->loginButton->Size = System::Drawing::Size(295, 49);
 				this->loginButton->TabIndex = 4;
 				this->loginButton->Text = L"Login";
 				this->loginButton->UseVisualStyleBackColor = false;
@@ -202,10 +190,9 @@ namespace BankManagement {
 					static_cast<System::Byte>(0)));
 				this->signinButton->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(192)),
 					static_cast<System::Int32>(static_cast<System::Byte>(192)));
-				this->signinButton->Location = System::Drawing::Point(101, 539);
-				this->signinButton->Margin = System::Windows::Forms::Padding(4);
+				this->signinButton->Location = System::Drawing::Point(76, 438);
 				this->signinButton->Name = L"signinButton";
-				this->signinButton->Size = System::Drawing::Size(393, 60);
+				this->signinButton->Size = System::Drawing::Size(295, 49);
 				this->signinButton->TabIndex = 4;
 				this->signinButton->Text = L"Sign in";
 				this->signinButton->UseVisualStyleBackColor = false;
@@ -222,10 +209,9 @@ namespace BankManagement {
 				this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
 				this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15));
 				this->button1->ForeColor = System::Drawing::Color::White;
-				this->button1->Location = System::Drawing::Point(547, 6);
-				this->button1->Margin = System::Windows::Forms::Padding(4);
+				this->button1->Location = System::Drawing::Point(410, 5);
 				this->button1->Name = L"button1";
-				this->button1->Size = System::Drawing::Size(48, 46);
+				this->button1->Size = System::Drawing::Size(36, 37);
 				this->button1->TabIndex = 5;
 				this->button1->Text = L"X";
 				this->button1->UseVisualStyleBackColor = false;
@@ -233,11 +219,12 @@ namespace BankManagement {
 				// 
 				// LoginForm
 				// 
-				this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+				this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 				this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(36)),
 					static_cast<System::Int32>(static_cast<System::Byte>(55)));
-				this->ClientSize = System::Drawing::Size(600, 677);
+				this->ClientSize = System::Drawing::Size(450, 550);
+				this->Controls->Add(this->passBox);
 				this->Controls->Add(this->button1);
 				this->Controls->Add(this->signinButton);
 				this->Controls->Add(this->loginButton);
@@ -245,11 +232,9 @@ namespace BankManagement {
 				this->Controls->Add(this->pictureBox2);
 				this->Controls->Add(this->panel2);
 				this->Controls->Add(this->panel1);
-				this->Controls->Add(this->passBox);
 				this->Controls->Add(this->userBox);
 				this->Controls->Add(this->pictureBox1);
 				this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
-				this->Margin = System::Windows::Forms::Padding(4);
 				this->Name = L"LoginForm";
 				this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 				this->Text = L"LoginForm";
@@ -291,28 +276,77 @@ namespace BankManagement {
 				passBox->Text = "password";
 			}
 		}
+
+		public: TaiKhoan^ taikhoan = nullptr;
+
+
 		private: System::Void loginButton_Click(System::Object^ sender, System::EventArgs^ e) {
-			if (userBox->Text == "admin")
-			{
-				if (passBox->Text == "123")
-				{
-					MessageBox::Show("Login Successfully!");
-					Dashboard^ dashboard = gcnew Dashboard();
-					dashboard->ShowDialog();
-					this->Hide();
-					/*MyForm^ my = gcnew MyForm();
-					my->ShowDialog();*/
-					
+			String^ tenBox = this->userBox->Text;
+			String^ passBox = this->passBox->Text;
+			
+			try {
+				String^ connectionString = "Data Source=LAPTOP-SH8ICRDB;Initial Catalog=Bank;Integrated Security=True";
+
+				SqlConnection sqlcon(connectionString);
+				sqlcon.Open();
+
+				String^ sqlQuery = "SELECT * FROM users WHERE ten=@ten AND password=@password";
+				
+				//String^ sqlQuery = "SELECT * FROM TaiKhoan WHERE ten="+tenBox+"AND _password="+passBox;
+
+
+				SqlCommand command(sqlQuery, % sqlcon);
+				command.Parameters->AddWithValue("@ten", tenBox);
+				command.Parameters->AddWithValue("@password", passBox);
+				
+				SqlDataReader^ reader = command.ExecuteReader();
+
+				if (reader->Read()) {
+					taikhoan = gcnew TaiKhoan();
+
+					taikhoan->id = reader->GetInt32(0);
+					taikhoan->ten = reader->GetString(1);
+					taikhoan->sodu = reader->GetDouble(2);
+					taikhoan->_password = reader->GetString(3);
+
+					MessageBox::Show("User Exists");
+
+					this->Close();
 				}
 				else
 				{
-					MessageBox::Show("Incorrect Password!");
+					MessageBox::Show("User Does Not Exists");
 				}
 			}
-			else
-			{
-				MessageBox::Show("User Does Not Exists");
+			catch(Exception^ e){
+				MessageBox::Show("Error: " + e->Message, "Exception", MessageBoxButtons::OK);
+				//MessageBox::Show("fail");
 			}
+			
+			//if (userBox->Text == "admin")
+			//{
+			//	if (passBox->Text == "123")
+			//	{
+			//		MessageBox::Show("Login Successfully!");
+			//		/*Dashboard^ dashboard = gcnew Dashboard();
+			//		dashboard->ShowDialog();*/
+
+
+
+			//		this->Hide();
+			//		MyForm^ my = gcnew MyForm();
+			//		my->ShowDialog();
+			//		
+			//	}
+			//	else
+			//	{
+			//		MessageBox::Show("Incorrect Password!");
+			//	}
+			//}
+			//else
+			//{
+			//	MessageBox::Show("User Does Not Exists");
+			//}
 		}
 
 		public: bool switchToRegister = false;
@@ -322,7 +356,6 @@ namespace BankManagement {
 			regis->ShowDialog();*/
 		}
 
-		String^ connectionString = "Data Source=LAPTOP-SH8ICRDB\\SQLEXPRESS;Initial Catalog=Bank;Integrated Security=True";
 
 //		private: String^ GetLoggedInAccountName()
 //	{
@@ -437,6 +470,7 @@ namespace BankManagement {
 //		}
 
 	
-		};
+		
+};
 
 }

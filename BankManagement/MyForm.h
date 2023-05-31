@@ -1,4 +1,5 @@
 #pragma once
+#include "TaiKhoan.h"
 
 namespace BankManagement {
 
@@ -23,6 +24,16 @@ namespace BankManagement {
 			//
 		}
 
+		MyForm(TaiKhoan^ taikhoan)
+		{
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+			info->Text = "Id = " + taikhoan->id;
+			info->Text = "Ten = " + taikhoan->ten;
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -34,6 +45,10 @@ namespace BankManagement {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::Label^ info;
+	protected:
+
+	protected:
 
 	private:
 		/// <summary>
@@ -48,18 +63,33 @@ namespace BankManagement {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->info = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
+			// 
+			// info
+			// 
+			this->info->AutoSize = true;
+			this->info->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->info->Location = System::Drawing::Point(55, 192);
+			this->info->Name = L"info";
+			this->info->Size = System::Drawing::Size(95, 36);
+			this->info->TabIndex = 0;
+			this->info->Text = L"label1";
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(540, 253);
+			this->ClientSize = System::Drawing::Size(1074, 752);
+			this->Controls->Add(this->info);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
+
 	};
 }

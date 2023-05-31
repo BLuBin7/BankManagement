@@ -127,6 +127,7 @@
     <ClCompile Include="Login.cpp" />
     <ClCompile Include="MyForm.cpp" />
     <ClCompile Include="Register.cpp" />
+    <ClCompile Include="TaiKhoan.h" />
     <ClCompile Include="TKtietkiem.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -104,9 +104,9 @@ namespace BankManagement {
 			this->iduserBox = (gcnew System::Windows::Forms::TextBox());
 			this->accountnameBox = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
-			 
-			 //thanhtoanButton
-			 
+			// 
+			// thanhtoanButton
+			// 
 			this->thanhtoanButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->thanhtoanButton->Location = System::Drawing::Point(1, 219);
@@ -115,9 +115,9 @@ namespace BankManagement {
 			this->thanhtoanButton->TabIndex = 0;
 			this->thanhtoanButton->Text = L"Tài khoản thanh toán";
 			this->thanhtoanButton->UseVisualStyleBackColor = true;
-			 
-			 //tietkiemButton
-			 
+			// 
+			// tietkiemButton
+			// 
 			this->tietkiemButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->tietkiemButton->Location = System::Drawing::Point(1, 354);
@@ -127,9 +127,9 @@ namespace BankManagement {
 			this->tietkiemButton->Text = L"Tài khoản tiết kiệm";
 			this->tietkiemButton->UseVisualStyleBackColor = true;
 			this->tietkiemButton->Click += gcnew System::EventHandler(this, &Dashboard::tietkiemButton_Click);
-			 
-			 //vayButton
-			 
+			// 
+			// vayButton
+			// 
 			this->vayButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->vayButton->Location = System::Drawing::Point(1, 471);
@@ -138,9 +138,9 @@ namespace BankManagement {
 			this->vayButton->TabIndex = 2;
 			this->vayButton->Text = L"Tài khoản vay mượn";
 			this->vayButton->UseVisualStyleBackColor = true;
-			 
-			 //label1
-			 
+			// 
+			// label1
+			// 
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 22.2F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -149,9 +149,9 @@ namespace BankManagement {
 			this->label1->Size = System::Drawing::Size(116, 42);
 			this->label1->TabIndex = 3;
 			this->label1->Text = L"Số dư";
-			 
-			 //button1
-			 
+			// 
+			// button1
+			// 
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->button1->Location = System::Drawing::Point(1, 669);
@@ -160,9 +160,9 @@ namespace BankManagement {
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Đăng xuất";
 			this->button1->UseVisualStyleBackColor = true;
-			 
-			 //textBox1
-			 
+			// 
+			// textBox1
+			// 
 			this->textBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->textBox1->Location = System::Drawing::Point(807, 387);
@@ -170,9 +170,9 @@ namespace BankManagement {
 			this->textBox1->Size = System::Drawing::Size(136, 45);
 			this->textBox1->TabIndex = 5;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &Dashboard::tienmuonchuyen);
-			 
-			 //chuyenkhoanButton
-			 
+			// 
+			// chuyenkhoanButton
+			// 
 			this->chuyenkhoanButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->chuyenkhoanButton->Location = System::Drawing::Point(807, 497);
@@ -183,9 +183,9 @@ namespace BankManagement {
 			this->chuyenkhoanButton->UseVisualStyleBackColor = true;
 			this->chuyenkhoanButton->AutoSizeChanged += gcnew System::EventHandler(this, &Dashboard::button2_Click);
 			this->chuyenkhoanButton->Click += gcnew System::EventHandler(this, &Dashboard::button2_Click);
-			 
-			 //soduBox
-			 
+			// 
+			// soduBox
+			// 
 			this->soduBox->Location = System::Drawing::Point(1025, 100);
 			this->soduBox->Name = L"soduBox";
 			this->soduBox->ReadOnly = true;
@@ -193,18 +193,19 @@ namespace BankManagement {
 			this->soduBox->TabIndex = 9;
 			this->soduBox->Text = L"1200";
 			this->soduBox->TextChanged += gcnew System::EventHandler(this, &Dashboard::soduBox_TextChanged);
-			 
-			 //nameUserBox
-			 
+			// 
+			// nameUserBox
+			// 
 			this->nameUserBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->nameUserBox->Location = System::Drawing::Point(807, 261);
 			this->nameUserBox->Name = L"nameUserBox";
 			this->nameUserBox->Size = System::Drawing::Size(136, 45);
 			this->nameUserBox->TabIndex = 10;
-			 
-			 //searchButton
-			 
+			this->nameUserBox->Text = L"asdas";
+			// 
+			// searchButton
+			// 
 			this->searchButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 13.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->searchButton->Location = System::Drawing::Point(949, 268);
@@ -214,9 +215,9 @@ namespace BankManagement {
 			this->searchButton->Text = L"Find";
 			this->searchButton->UseVisualStyleBackColor = true;
 			this->searchButton->Click += gcnew System::EventHandler(this, &Dashboard::searchButton_Click);
-			 
-			 //iduserBox
-			 
+			// 
+			// iduserBox
+			// 
 			this->iduserBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->iduserBox->Location = System::Drawing::Point(47, 68);
@@ -224,9 +225,9 @@ namespace BankManagement {
 			this->iduserBox->Size = System::Drawing::Size(100, 45);
 			this->iduserBox->TabIndex = 12;
 			this->iduserBox->TextChanged += gcnew System::EventHandler(this, &Dashboard::iduserBox_TextChanged);
-			 
-			 //accountnameBox
-			 
+			// 
+			// accountnameBox
+			// 
 			this->accountnameBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->accountnameBox->Location = System::Drawing::Point(47, 152);
@@ -234,9 +235,9 @@ namespace BankManagement {
 			this->accountnameBox->Size = System::Drawing::Size(100, 45);
 			this->accountnameBox->TabIndex = 13;
 			this->accountnameBox->TextChanged += gcnew System::EventHandler(this, &Dashboard::accountnameBox_TextChanged);
-			 
-			 //Dashboard
-			 
+			// 
+			// Dashboard
+			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1182, 768);
@@ -263,7 +264,7 @@ namespace BankManagement {
 #pragma endregion
 
 	 //connect database
-	String^ connectionString = "Data Source=LAPTOP-SH8ICRDB\\SQLEXPRESS;Initial Catalog=Bank;Integrated Security=True";
+	String^ connectionString = "Data Source=LAPTOP-SH8ICRDB;Initial Catalog=Bank;Integrated Security=True";
 	
 	//private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//	int bsodu = Int32::Parse(sodu->Text);
@@ -484,9 +485,10 @@ private: System::Void iduserBox_TextChanged(System::Object^ sender, System::Even
 	SqlConnection^ connection = gcnew SqlConnection(connectionString);
 	connection->Open();
 
-	String^ selectQuery = "SELECT id FROM TaiKhoan WHERE ten = admin;";
+
+	String^ selectQuery = "SELECT id FROM TaiKhoan WHERE ten = @admin;";
 	SqlCommand^ command = gcnew SqlCommand(selectQuery, connection);
-	command->Parameters->AddWithValue("admin", accountName);
+	command->Parameters->AddWithValue("@admin", accountName);
 
 	SqlDataReader^ reader = command->ExecuteReader();
 

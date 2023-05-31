@@ -10,5 +10,15 @@ void main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	Application::EnableVisualStyles();
 	BankManagement::LoginForm myFrm;
-	Application::Run(% myFrm);
+
+	myFrm.ShowDialog();
+	TaiKhoan^ taikhoan = myFrm.taikhoan;
+
+	if (taikhoan != nullptr) {
+		BankManagement::MyForm dashboard(taikhoan);
+		Application::Run(% dashboard);
+	}
+	else {
+		MessageBox::Show("Fail");
+	}
 }
