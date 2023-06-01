@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include "TaiKhoan.h"
-#include "Dashboard.h"
 
 namespace BankManagement {
 
@@ -10,6 +9,8 @@ namespace BankManagement {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Data::SqlClient;
+
 
 	/// <summary>
 	/// Summary for TKtietkiem
@@ -36,12 +37,15 @@ namespace BankManagement {
 			//
 			amountToDeposit = amount;
 		}
-		TKtietkiem(TaiKhoan^ taikhoan) {
+		
+
+		TKtietkiem(String ^ sodu,String^ ten) {
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
-			sodulabel->Text = "So du: " + taikhoan->sodu.ToString();
+			sodulabel->Text = sodu;
+			tenlabel->Text = ten;
 		}
 
 	protected:
@@ -62,6 +66,7 @@ namespace BankManagement {
 	private: System::Windows::Forms::TextBox^ sotienguiBox;
 	private: System::Windows::Forms::Button^ guiButton;
 	private: System::Windows::Forms::Label^ sodulabel;
+	private: System::Windows::Forms::Label^ tenlabel;
 
 
 	private:
@@ -82,6 +87,7 @@ namespace BankManagement {
 			this->sotienguiBox = (gcnew System::Windows::Forms::TextBox());
 			this->guiButton = (gcnew System::Windows::Forms::Button());
 			this->sodulabel = (gcnew System::Windows::Forms::Label());
+			this->tenlabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// returnButton
@@ -124,15 +130,27 @@ namespace BankManagement {
 				static_cast<System::Byte>(0)));
 			this->sodulabel->Location = System::Drawing::Point(53, 45);
 			this->sodulabel->Name = L"sodulabel";
-			this->sodulabel->Size = System::Drawing::Size(109, 39);
+			this->sodulabel->Size = System::Drawing::Size(103, 38);
 			this->sodulabel->TabIndex = 3;
 			this->sodulabel->Text = L"label1";
+			// 
+			// tenlabel
+			// 
+			this->tenlabel->AutoSize = true;
+			this->tenlabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->tenlabel->Location = System::Drawing::Point(53, 141);
+			this->tenlabel->Name = L"tenlabel";
+			this->tenlabel->Size = System::Drawing::Size(109, 39);
+			this->tenlabel->TabIndex = 4;
+			this->tenlabel->Text = L"label1";
 			// 
 			// TKtietkiem
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1071, 742);
+			this->Controls->Add(this->tenlabel);
 			this->Controls->Add(this->sodulabel);
 			this->Controls->Add(this->guiButton);
 			this->Controls->Add(this->sotienguiBox);
@@ -144,15 +162,42 @@ namespace BankManagement {
 
 		}
 #pragma endregion
-	//private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e) {
-		/*Dashboard^ dashboard = gcnew Dashboard(amountToDeposit);
-		dashboard->ShowDialog();
+		// TKtietkiem.h
+	String^ connectionString = "Data Source=LAPTOP-SH8ICRDB;Initial Catalog=Bank;Integrated Security=True";
+	
 
-		sotienguiBox->Text = (Int32::Parse(sotienguiBox->Text) - amountToDeposit).ToString();
+private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Retrieve the deposit amount from the sotienguiBox
+	String^ depositAmountString = sotienguiBox->Text;
+	double depositAmount = Double::Parse(depositAmountString);
 
-		MessageBox::Show("Thanh cong", "Thanh cong", MessageBoxButtons::OK);*/
-	//}
-	private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e);
+	// Deduct the deposit amount from the sodulabel value
+	double currentBalance = Double::Parse(sodulabel->Text->Substring(8)); 
+	double newBalance = currentBalance - depositAmount;
+
+	try {
+		SqlConnection^ connection = gcnew SqlConnection(connectionString);
+		connection->Open();
+
+		// Update the sodulabel value in the database
+		String^ updateQuery = "UPDATE TaiKhoan SET sodu= " + newBalance.ToString() + " WHERE ten=@tennguoigui"; 
+		SqlCommand^ command = gcnew SqlCommand(updateQuery, connection);
+		command->Parameters->AddWithValue("@tennguoigui", tenlabel->Text);
+
+		command->ExecuteNonQuery();
+
+		// Update the sodulabel text with the new balance
+		sodulabel->Text = "So du: " + newBalance.ToString();
+
+		// Display a success message
+		MessageBox::Show("Deposit successful!", "Success", MessageBoxButtons::OK);
+	}
+	catch (Exception^ ex) {
+		MessageBox::Show("Khong gui duoc tien: " + ex->Message);
+	}
+}
+
+
 		
 	private: System::Void returnButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		/*this->Hide();

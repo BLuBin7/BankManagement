@@ -17,7 +17,6 @@ void main(array<String^>^ args) {
 		myFrm.Close();
 		MessageBox::Show("Successful " + taikhoan->ten, "Login.cpp", MessageBoxButtons::OK);
 		BankManagement::Dashboard dashboard(taikhoan);
-		BankManagement::TKtietkiem::TKtietkiem(taikhoan->sodu);
 
 		Application::Run(% dashboard);
 	}

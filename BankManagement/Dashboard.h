@@ -17,7 +17,7 @@ namespace BankManagement {
 	/*/ <summary>
 	/ Summary for Dashboard
 	/ </summary>*/
-	public ref class Dashboard : public System::Windows::Forms::Form
+	public ref class Dashboard : public System::Windows::Forms::Form 
 	{
 		//connect form login
 	private:
@@ -271,67 +271,58 @@ namespace BankManagement {
 	
 // chuc nang chuyen khoan
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		double bsodu = 0.0;
-		double btienmuonchuyen = 0.0;
+	String^ sodu = sodulabel->Text;
+	double bsodu = Double::Parse(sodu);
 
-		// Parse the text into doubles
-		if (Double::TryParse(sodulabel->Text, bsodu) && Double::TryParse(sotienchuyen->Text, btienmuonchuyen))
+	String^ tienmuonchuyen = sotienchuyen->Text;
+	double btienmuonchuyen = Double::Parse(tienmuonchuyen);
+
+	if (bsodu >= btienmuonchuyen)
+	{
+		try
 		{
-			// The parsing was successful, proceed with the transfer logic
-			if (bsodu > btienmuonchuyen)
-			{
-				/* Perform the transfer operation
-				   Update the balance in the database */
+			SqlConnection^ connection = gcnew SqlConnection(connectionString);
+			connection->Open();
 
-				try
-				{
-					SqlConnection^ connection = gcnew SqlConnection(connectionString);
-					connection->Open();
+			// Assuming you have an 'users' table with columns 'id', 'ten', and 'sodu'
+			String^ updateQuerychuyen = "UPDATE users SET sodu = sodu - " + btienmuonchuyen + " WHERE id = '" + idlabel->Text + "';";
+			String^ updateQuerynhan = "UPDATE users SET sodu = sodu + " + btienmuonchuyen + " WHERE id = '" + findnameuser->Text + "';";
 
-					// Assuming you have an 'accounts' table with columns 'id', 'ten', and 'sodu'
-					String^ updateQuerychuyen = "UPDATE users SET sodu = sodu - " + btienmuonchuyen + " WHERE id = '" + idlabel->Text + "';";
-					String^ updateQuerynhan = "UPDATE users SET sodu = sodu + " + btienmuonchuyen + " WHERE id = '" + findnameuser->Text + "';";
+			SqlCommand^ commandchuyen = gcnew SqlCommand(updateQuerychuyen, connection);
+			SqlCommand^ commandnhan = gcnew SqlCommand(updateQuerynhan, connection);
 
-					SqlCommand^ commandchuyen = gcnew SqlCommand(updateQuerychuyen, connection);
-					SqlCommand^ commandnhan = gcnew SqlCommand(updateQuerynhan, connection);
+			commandchuyen->ExecuteNonQuery();
+			commandnhan->ExecuteNonQuery();
 
-					commandchuyen->ExecuteNonQuery();
-					commandnhan->ExecuteNonQuery();
+			// Disconnect
+			connection->Close();
 
-					// Disconnect
-					connection->Close();
+			// Update the balance label with the new balance
+			bsodu -= btienmuonchuyen;
+			sodulabel->Text = bsodu.ToString();
 
-					// Update the balance label with the new balance
-					bsodu -= btienmuonchuyen;
-					sodulabel->Text = bsodu.ToString();
-
-					// Display a success message
-				MessageBox::Show("Transfer successful!", "Success", MessageBoxButtons::OK);
-				}
-				catch (Exception^ ex)
-				{
-					MessageBox::Show("Failed to update balance in the database", "Error", MessageBoxButtons::OK);
-				}
-			}
-			else
-			{
-				// Display an error message indicating insufficient balance
-				MessageBox::Show("Insufficient balance.", "Error", MessageBoxButtons::OK);
-			}
+			// Display a success message
+			MessageBox::Show("Transfer successful!", "Success", MessageBoxButtons::OK);
 		}
-		else
+		catch (Exception^ ex)
 		{
-			// Show an error message indicating invalid input
-			MessageBox::Show("Invalid input. Please enter valid numeric values.", "Input Error", MessageBoxButtons::OK);
+			MessageBox::Show("Failed to update balance in the database", "Error", MessageBoxButtons::OK);
 		}
 	}
+	else
+	{
+		// Display an error message indicating insufficient balance
+		MessageBox::Show("Insufficient balance.", "Error", MessageBoxButtons::OK);
+	}
+}
+
 
 
 //chuyen trang tiet kiem
 private: System::Void tietkiemButton_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Hide();
 	TaiKhoan^ tk = gcnew TaiKhoan();
-	TKtietkiem^ tktk = gcnew TKtietkiem(tk->sodu);
+	TKtietkiem^ tktk = gcnew TKtietkiem(sodulabel->Text,tenlabel->Text);
 	tktk->ShowDialog();
 }
 
