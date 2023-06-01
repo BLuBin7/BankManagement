@@ -290,7 +290,7 @@ namespace BankManagement {
 				SqlConnection sqlcon(connectionString);
 				sqlcon.Open();
 
-				String^ sqlQuery = "SELECT * FROM users WHERE ten=@ten AND password=@password";
+				String^ sqlQuery = "SELECT * FROM TaiKhoan WHERE ten=@ten AND _password=@password";
 				
 				//String^ sqlQuery = "SELECT * FROM TaiKhoan WHERE ten="+tenBox+"AND _password="+passBox;
 
@@ -306,7 +306,7 @@ namespace BankManagement {
 
 					taikhoan->id = reader->GetInt32(0);
 					taikhoan->ten = reader->GetString(1);
-					taikhoan->sodu = reader->GetDouble(2);
+					taikhoan->sodu = static_cast<double>(reader->GetDecimal(2));
 					taikhoan->_password = reader->GetString(3);
 
 					this->Close();

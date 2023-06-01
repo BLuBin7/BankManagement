@@ -1,4 +1,6 @@
 ﻿#pragma once
+#include "TaiKhoan.h"
+#include "Dashboard.h"
 
 namespace BankManagement {
 
@@ -34,6 +36,13 @@ namespace BankManagement {
 			//
 			amountToDeposit = amount;
 		}
+		TKtietkiem(TaiKhoan^ taikhoan) {
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+			sodulabel->Text = "So du: " + taikhoan->sodu.ToString();
+		}
 
 	protected:
 		/// <summary>
@@ -52,6 +61,7 @@ namespace BankManagement {
 	protected:
 	private: System::Windows::Forms::TextBox^ sotienguiBox;
 	private: System::Windows::Forms::Button^ guiButton;
+	private: System::Windows::Forms::Label^ sodulabel;
 
 
 	private:
@@ -60,7 +70,8 @@ namespace BankManagement {
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
-#pragma region Windows Form Designer generated code
+#pragma region 
+		//Windows Form Designer generated code
 		/// <summary>
 		/// Required method for Designer support - do not modify
 		/// the contents of this method with the code editor.
@@ -70,6 +81,7 @@ namespace BankManagement {
 			this->returnButton = (gcnew System::Windows::Forms::Button());
 			this->sotienguiBox = (gcnew System::Windows::Forms::TextBox());
 			this->guiButton = (gcnew System::Windows::Forms::Button());
+			this->sodulabel = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// returnButton
@@ -105,11 +117,23 @@ namespace BankManagement {
 			this->guiButton->UseVisualStyleBackColor = true;
 			this->guiButton->Click += gcnew System::EventHandler(this, &TKtietkiem::guiButton_Click);
 			// 
+			// sodulabel
+			// 
+			this->sodulabel->AutoSize = true;
+			this->sodulabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 19.8F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->sodulabel->Location = System::Drawing::Point(53, 45);
+			this->sodulabel->Name = L"sodulabel";
+			this->sodulabel->Size = System::Drawing::Size(109, 39);
+			this->sodulabel->TabIndex = 3;
+			this->sodulabel->Text = L"label1";
+			// 
 			// TKtietkiem
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1071, 742);
+			this->Controls->Add(this->sodulabel);
 			this->Controls->Add(this->guiButton);
 			this->Controls->Add(this->sotienguiBox);
 			this->Controls->Add(this->returnButton);
@@ -120,15 +144,16 @@ namespace BankManagement {
 
 		}
 #pragma endregion
-	private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e) {
+	//private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		/*Dashboard^ dashboard = gcnew Dashboard(amountToDeposit);
 		dashboard->ShowDialog();
 
 		sotienguiBox->Text = (Int32::Parse(sotienguiBox->Text) - amountToDeposit).ToString();
 
 		MessageBox::Show("Thanh cong", "Thanh cong", MessageBoxButtons::OK);*/
-	}
-	
+	//}
+	private: System::Void guiButton_Click(System::Object^ sender, System::EventArgs^ e);
+		
 	private: System::Void returnButton_Click(System::Object^ sender, System::EventArgs^ e) {
 		/*this->Hide();
 		Dashboard^ dashboard = gcnew Dashboard();
